@@ -52,6 +52,16 @@ services:
     depends_on:
       - db
 
+  rabbitmq:
+    image: docker.io/bitnami/rabbitmq:3.9
+    ports:
+      - '5672:5672'
+      - '15672:15672'
+#    environment:
+#      - RABBITMQ_SECURE_PASSWORD=yes
+    volumes:
+      - 'rabbitmq_data:/bitnami/rabbitmq/mnesia'
+
   postgres:
     image: postgres:13
     environment:
@@ -247,3 +257,7 @@ services:
       <<: *airflow-common-depends-on
       airflow-init:
         condition: service_completed_successfully
+
+volumes:
+  rabbitmq_data:
+    driver: local
