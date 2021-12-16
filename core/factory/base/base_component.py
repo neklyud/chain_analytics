@@ -8,4 +8,3 @@ class BaseComponentFactory(ABC, Generic[ComponentType]):
     @abstractmethod
     def create(self, component_name: str) -> ComponentType:
         raise NotImplementedError()
-

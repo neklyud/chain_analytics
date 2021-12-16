@@ -8,6 +8,7 @@ class Configuration(Config):
         port: int = field("RABBIT_PORT", caster=to_int, default=5672)
         password: str = field("RABBIT_PASSWORD", default="12345")
         login: str = field("RABBIT_LOGIN", default="user")
+        timeout: int = field("TIMEOUT", caster=to_int, default=10)
         web2loader_queue_name: str = field("web2loader_queue_name", default="web2loader_queue")
 
 
