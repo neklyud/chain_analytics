@@ -28,8 +28,9 @@ deploy-dev:
     - >-
       ssh -i ~/.ssh/ssh-key.pem ubuntu@$EC2_ADDRESS \
       '
+      echo 'Start'
       if [ -d chain_etl ]; 
-      then cd chain_etl
+      then echo '1' && cd chain_etl
       && git status
       && git restore .env
       && git pull --rebase
