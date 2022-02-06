@@ -22,8 +22,8 @@ deploy-dev:
   script:
     - >- 
       ssh -i ~/.ssh/ssh-key.pem ubuntu@$EC2_ADDRESS \
-      'git config --global --replace-all user.name "Full Name"
-      && git config --global --replace-all user.email "email@email.com"
+      'git config --global --replace-all user.name "xneklyudx"
+      && git config --global --replace-all user.email ""
       '
     - >-
       ssh -i ~/.ssh/ssh-key.pem ubuntu@$EC2_ADDRESS \
@@ -38,7 +38,7 @@ deploy-dev:
       && sed -i s:%AIRFLOW_GID%:0:g .env
       && sed -i s:%_AIRFLOW_WWW_USER_USERNAME%:'"$_AIRFLOW_WWW_USER_USERNAME"':g .env
       && sed -i s:%_AIRFLOW_WWW_USER_PASSWORD%:'"$_AIRFLOW_WWW_USER_PASSWORD"':g .env
-      else git clone https://'"$GITLAB_USERNAME"':'"$GITLAB_PASSWORD"'@gitlab.com/gitlab-group/gitlab-project.git
+      else git clone https://'"$GITLAB_USERNAME"':'"$GITLAB_PASSWORD"'@gitlab.com/xneklyudx/chain_etl.git
       && cd chain_etl
       && ls -la 
       && chmod 777 logs
