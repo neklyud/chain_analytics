@@ -28,7 +28,7 @@ deploy-dev:
     - >-
       ssh -i ~/.ssh/ssh-key.pem ubuntu@$EC2_ADDRESS \
       '
-      ls -la &&
+      echo qwe >> 1.txt &&
       if [ -d chain_etl ]; 
       then cd chain_etl
       && git status
