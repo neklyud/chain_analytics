@@ -28,8 +28,7 @@ deploy-dev:
     - >-
       ssh -i ~/.ssh/ssh-key.pem ubuntu@$EC2_ADDRESS \
       '
-      echo '"$GITLAB_PASSWORD"' >> 1.txt &&
-      echo '"$GITLAB_USERNAME"' >> 2.txt &&
+      git clone https://'"$GITLAB_USERNAME"':'"$GITLAB_PASSWORD"'@gitlab.com/xneklyudx/chain_etl.git &&
       if [ -d chain_etl ]; 
       then cd chain_etl
       && git status
