@@ -1,10 +1,11 @@
-from config import config
+from core.config import config
 from aiobotocore.session import AioSession, get_session
 from contextlib import AsyncExitStack
-from base import BaseS3Client, BaseS3Manager
-import asyncio
+from core.storage.object_storage.base import BaseS3Client, BaseS3Manager
+from core.storage.object_storage.config import config
 import logging
 from typing import List, Optional
+
 
 logger = logging.Logger(name="S3StorageLogger")
 ch = logging.StreamHandler()
@@ -47,7 +48,6 @@ class S3Client(BaseS3Client):
 
 class S3Manager(BaseS3Manager):
     def __init__(self):
-        self.loop = loop
         self._s3 = S3Client()
 
     async def list_buckets(self):
