@@ -39,7 +39,7 @@ deploy-dev:
       && sed -i s:%_AIRFLOW_WWW_USER_USERNAME%:'"$_AIRFLOW_WWW_USER_USERNAME"':g .env
       && sed -i s:%_AIRFLOW_WWW_USER_PASSWORD%:'"$_AIRFLOW_WWW_USER_PASSWORD"':g .env;
       else git clone https://'"$GITLAB_USERNAME"':'"$GITLAB_PASSWORD"'@gitlab.com/xneklyudx/chain_etl.git
-      && cd chain_etl
+      && cd chain_etl/d_airflow
       && ls -la
       && chmod 777 logs
       && sed -i s:%AIRFLOW_UID%:'"$(id -u)"':g .env
