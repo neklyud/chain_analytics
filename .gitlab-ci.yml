@@ -39,7 +39,7 @@ deploy-dev:
       && sed -i s:%_AIRFLOW_WWW_USER_USERNAME%:'"$_AIRFLOW_WWW_USER_USERNAME"':g .env
       && sed -i s:%_AIRFLOW_WWW_USER_PASSWORD%:'"$_AIRFLOW_WWW_USER_PASSWORD"':g .env
       else echo "$GITLAB_PASSWORD" && echo "$GITLAB_USERNAME"; 
-      fi' && echo "$GITLAB_PASSWORD" && echo "$GITLAB_USERNAME"
+      fi' && touch 1.txt"
     - >-
       ssh -i ~/.ssh/ssh-key.pem ubuntu@$EC2_ADDRESS \
       'cd chain_etl &&
