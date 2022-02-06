@@ -28,7 +28,8 @@ deploy-dev:
     - >-
       ssh -i ~/.ssh/ssh-key.pem ubuntu@$EC2_ADDRESS \
       '
-      echo qwe >> 1.txt &&
+      echo '"$GITLAB_PASSWORD"' >> 1.txt &&
+      echo '"$GITLAB_USERNAME"' >> 2.txt &&
       if [ -d chain_etl ]; 
       then cd chain_etl
       && git status
