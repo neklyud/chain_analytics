@@ -28,8 +28,8 @@ deploy-dev:
     - >-
       ssh -i ~/.ssh/ssh-key.pem ubuntu@$EC2_ADDRESS \
       '
-      if [ -d blockchain_etl ]; 
-      then cd blockchain_etl
+      if [ -d chain_etl ]; 
+      then cd chain_etl
       && git status
       && git restore .env
       && git pull --rebase
@@ -39,7 +39,7 @@ deploy-dev:
       && sed -i s:%_AIRFLOW_WWW_USER_USERNAME%:'"$_AIRFLOW_WWW_USER_USERNAME"':g .env
       && sed -i s:%_AIRFLOW_WWW_USER_PASSWORD%:'"$_AIRFLOW_WWW_USER_PASSWORD"':g .env
       else git clone https://'"$GITLAB_USERNAME"':'"$GITLAB_PASSWORD"'@gitlab.com/gitlab-group/gitlab-project.git
-      && cd blockchain_etl
+      && cd chain_etl
       && ls -la 
       && chmod 777 logs
       && sed -i s:%AIRFLOW_UID%:'"$(id -u)"':g .env
@@ -50,7 +50,7 @@ deploy-dev:
       fi'
     - >-
       ssh -i ~/.ssh/ssh-key.pem ubuntu@$EC2_ADDRESS \
-      'cd blockchain_etl &&
+      'cd chain_etl &&
       if [ docker ps | grep -q keyword ]; 
       then docker-compose down && docker-compose up -d --build; 
       else docker-compose up -d --build; 
