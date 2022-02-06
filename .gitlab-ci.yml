@@ -47,12 +47,12 @@ deploy-dev:
       && sed -i s:%AIRFLOW_GID%:0:g .env
       && sed -i s:%_AIRFLOW_WWW_USER_USERNAME%:'"$_AIRFLOW_WWW_USER_USERNAME"':g .env
       && sed -i s:%_AIRFLOW_WWW_USER_PASSWORD%:'"$_AIRFLOW_WWW_USER_PASSWORD"':g .env
-      && docker-compose up airflow-init; 
+      && docker-compose -f airflow.docker-compose.yaml up airflow-init; 
       fi';
     - >-
       ssh -i ~/.ssh/ssh-key.pem ubuntu@$EC2_ADDRESS \
       'cd chain_etl &&
       if [ docker ps | grep -q keyword ]; 
-      then docker-compose down && docker-compose up -d --build; 
-      else docker-compose up -d --build; 
+      then docker-compose -f airflow.docker-compose.yaml down && docker-compose -f airflow.docker-compose.yaml up -d --build; 
+      else docker-compose -f airflow.docker-compose.yaml up -d --build; 
       fi;'
