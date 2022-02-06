@@ -1,11 +1,6 @@
 from pydantic import BaseModel, root_validator
 from typing import TypeVar
 
-
-class EthTransaction(BaseModel):
-    pass
-
-
 Hex = TypeVar("Hex")
 
 
@@ -30,4 +25,8 @@ class EthBlock(BaseModel):
     transactions: list[Hex]
     transactionsRoot: Hex
     uncles: list
+
+
+class EthBlockWithTrx(EthBlock):
+    transactions: list[dict]
 
