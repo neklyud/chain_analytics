@@ -18,17 +18,14 @@ class AsyncWeb3HTTPSource(AsyncBaseWeb3):
             middlewares=[],
         )
 
-    # @limiter(infura_limiter)
     async def get_block(self, block_number: int) -> EthBlock:
         block = await self.provider.eth.get_block(block_number)
         return EthBlock(**block)
 
-    # @limiter(infura_limiter)
     async def latest_block(self) -> EthBlock:
         last_block = await self.provider.eth.get_block("latest")
         return EthBlock(**last_block)
 
-    # @limiter(infura_limiter)
     async def get_transaction(self, trx_hash: Hex) -> dict:
         trx: dict = await self.provider.eth.get_transaction(trx_hash)
         return trx
