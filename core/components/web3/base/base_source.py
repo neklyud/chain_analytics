@@ -10,4 +10,3 @@ class AsyncBaseWeb3(ABC):
     @abstractmethod
     async def get_transaction(self, trx_hash: Hex):
         raise NotImplementedError()
-    

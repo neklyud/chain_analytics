@@ -1,13 +1,8 @@
 from web3 import Web3, AsyncHTTPProvider
 from web3.eth import AsyncEth
 from web3.net import AsyncNet
-from core.models.web3.blocks import EthBlock
-from core.tools.coro_rate_limiter import limiter
-from limiter import infura_limiter
-from core.models.web3.blocks import Hex
-from core.components.loader.base_source import AsyncBaseWeb3
-from inspect import getmembers, ismethod, isfunction
-from aiolimiter import AsyncLimiter
+from core.models.web3.blocks import EthBlock, Hex
+from core.components.web3.base.base_source import AsyncBaseWeb3
 
 
 class AsyncWeb3HTTPSource(AsyncBaseWeb3):
@@ -29,13 +24,3 @@ class AsyncWeb3HTTPSource(AsyncBaseWeb3):
     async def get_transaction(self, trx_hash: Hex) -> dict:
         trx: dict = await self.provider.eth.get_transaction(trx_hash)
         return trx
-
-
-if __name__ == '__main__':
-    from config import config
-    import asyncio
-    from datetime import datetime
-    cli = AsyncWeb3HTTPSource(provider_address=config.Providers.ropsten_infura)
-    loop = asyncio.get_event_loop()
-    ans = loop.run_until_complete(cli.get_block(11797417)) # 11797417
-    print(datetime.fromtimestamp(ans.timestamp))
