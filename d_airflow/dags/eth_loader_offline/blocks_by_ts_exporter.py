@@ -31,4 +31,8 @@ class BlocksNumbersByPeriodExporter(BaseExporter):
         blocks = []
         for i_block_num in range(start_block_number, end_block_number):
             blocks.append(await self.finder.get_block_with_trx(i_block_num))
+            with open('/home/semyon/1.json', 'w') as f:
+                import json
+                f.write(json.dumps(blocks[-1].dict()))
+
         return blocks
